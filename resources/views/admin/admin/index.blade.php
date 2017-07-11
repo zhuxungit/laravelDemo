@@ -9,16 +9,16 @@
 <link rel="Bookmark" href="/favicon.ico" >
 <link rel="Shortcut Icon" href="/favicon.ico" />
 <!--[if lt IE 9]>
-<script type="text/javascript" src="admin/lib/html5shiv.js"></script>
-<script type="text/javascript" src="admin/lib/respond.min.js"></script>
+<script type="text/javascript" src="{{asset('admin/lib/html5shiv.js')}}" ></script>
+<script type="text/javascript" src="{{asset('admin/lib/respond.min.js')}}" ></script>
 <![endif]-->
-<link rel="stylesheet" type="text/css" href="admin/static/h-ui/css/H-ui.min.css" />
-<link rel="stylesheet" type="text/css" href="admin/static/h-ui.admin/css/H-ui.admin.css" />
-<link rel="stylesheet" type="text/css" href="admin/lib/Hui-iconfont/1.0.8/iconfont.css" />
-<link rel="stylesheet" type="text/css" href="admin/static/h-ui.admin/skin/default/skin.css" id="skin" />
-<link rel="stylesheet" type="text/css" href="admin/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="{{asset('admin/static/h-ui/css/H-ui.min.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{asset('admin/static/h-ui.admin/css/H-ui.admin.css')}}"  />
+<link rel="stylesheet" type="text/css" href="{{asset('admin/lib/Hui-iconfont/1.0.8/iconfont.css')}}"  />
+<link rel="stylesheet" type="text/css" href="{{asset('admin/static/h-ui.admin/skin/default/skin.css')}}"  id="skin" />
+<link rel="stylesheet" type="text/css" href="{{asset('admin/static/h-ui.admin/css/style.css')}}"  />
 <!--[if IE 6]>
-<script type="text/javascript" src="admin/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script type="text/javascript" src="{{asset('admin/lib/DD_belatedPNG_0.0.8a-min.js')}}"  ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <title>H-ui.admin v3.0</title>
@@ -47,11 +47,11 @@
 			<ul class="cl">
 				<li>超级管理员</li>
 				<li class="dropDown dropDown_hover">
-					<a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
+					<a href="#" class="dropDown_A">{{Auth::guard('admin')->user()->username}}<i class="Hui-iconfont">&#xe6d5;</i></a>
 					<ul class="dropDown-menu menu radius box-shadow">
 						<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
 						<li><a href="#">切换账户</a></li>
-						<li><a href="#">退出</a></li>
+						<li><a href="{{url('/logout')}}">退出</a></li>
 				</ul>
 			</li>
 				<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
@@ -92,7 +92,7 @@
 			<dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="brand" data-title="品牌管理" href="javascript:void(0)">品牌管理</a></li>
+					<li><a data-href="/brand" data-title="品牌管理" href="javascript:void(0)">品牌管理</a></li>
 					<li><a data-href="product-category.html" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
 					<li><a data-href="product-list.html" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
 			</ul>
@@ -186,13 +186,13 @@
 </ul>
 </div>
 <!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="admin/lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="admin/lib/layer/2.4/layer.js"></script>
-<script type="text/javascript" src="admin/static/h-ui/js/H-ui.min.js"></script>
-<script type="text/javascript" src="admin/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="{{asset('admin/lib/jquery/1.9.1/jquery.min.js')}}" ></script>
+<script type="text/javascript" src="{{asset('admin/lib/layer/2.4/layer.js')}}" ></script>
+<script type="text/javascript" src="{{asset('admin/static/h-ui/js/H-ui.min.js')}}" ></script>
+<script type="text/javascript" src="{{asset('admin/static/h-ui.admin/js/H-ui.admin.js')}}" ></script> <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="admin/lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
+<script type="text/javascript" src="{{asset('admin/lib/jquery.contextmenu/jquery.contextmenu.r2.js')}}" ></script>
 <script type="text/javascript">
 $(function(){
 	/*$("#min_title_list li").contextMenu('Huiadminmenu', {
@@ -257,16 +257,6 @@ function member_add(title,url,w,h){
 
 </script> 
 
-<!--此乃百度统计代码，请自行删除-->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-<!--/此乃百度统计代码，请自行删除-->
+
 </body>
 </html>

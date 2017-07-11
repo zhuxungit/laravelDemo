@@ -45,6 +45,11 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
     ],
 
     /*
@@ -66,7 +71,7 @@ return [
 
     'providers' => [
         'users' => [
-            'driver' => 'eloquent',
+            'driver' => 'eloquent', //
             'model' => App\User::class,
         ],
 
@@ -74,6 +79,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+         'admin' => [
+             'driver' => 'eloquent', //数据的获取
+             'model' => App\Http\Model\UserModel::class,
+         ],
     ],
 
     /*

@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <!--[if lt IE 9]>
-    <script type="text/javascript" src="admin/lib/html5shiv.js"></script>
-    <script type="text/javascript" src="admin/lib/respond.min.js"></script>
+    <script type="text/javascript" src="{{asset('admin/lib/html5shiv.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/lib/respond.min.js')}}"></script>
     <![endif]-->
-    <link href="admin/static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css"/>
-    <link href="admin/static/h-ui.admin/css/H-ui.login.css" rel="stylesheet" type="text/css"/>
-    <link href="admin/static/h-ui.admin/css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="admin/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('admin/static/h-ui/css/H-ui.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('admin/static/h-ui.admin/css/H-ui.login.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('admin/static/h-ui.admin/css/style.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('admin/lib/Hui-iconfont/1.0.8/iconfont.css')}}" rel="stylesheet" type="text/css"/>
     <!--[if IE 6]>
-    <script type="text/javascript" src="admin/lib/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script type="text/javascript" src="{{asset('admin/lib/DD_belatedPNG_0.0.8a-min.js')}}"></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
     <title>后台登录 - H-ui.admin v3.0</title>
@@ -27,25 +27,52 @@
 <div class="header"></div>
 <div class="loginWraper">
     <div id="loginform" class="loginBox">
+
+
+
         <form class="form form-horizontal" action="/login" method="post">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
                 <div class="formControls col-xs-8">
-                    <input id="" name="username" type="text" placeholder="账户" class="input-text size-L">
+                    <input id="" name="username" type="text" placeholder="账户" class="input-text size-L"></br>
+
+                    {{--@if($errors->has('username'))--}}
+                        {{--@foreach($errors->get('username') as $error)--}}
+                            {{--{{$error}}--}}
+                        {{--@endforeach--}}
+                    {{--@endif--}}
+
+
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
                 <div class="formControls col-xs-8">
-                    <input id="" name="password" type="password" placeholder="密码" class="input-text size-L">
+                    <input id="" name="password" type="password" placeholder="密码" class="input-text size-L"></br>
+
+                    @if($errors->has('password'))
+                        @foreach($errors->get('password') as $error)
+                            {{$error}}
+                        @endforeach
+                    @endif
+
                 </div>
             </div>
+
             <div class="row cl">
                 <div class="formControls col-xs-8 col-xs-offset-3">
-                    <input class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}"
-                           onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
-                    <img src=""> <a id="kanbuq" href="javascript:;">看不清，换一张</a></div>
+                    <input name="captcha" class="input-text size-L" type="text" placeholder="验证码"
+                            style="width:150px;">
+                    <img  src="{{captcha_src()}}" onclick="this.src='{{captcha_src()}}'+Math.random()"> 看不清，换一张</br>
+
+                    @if($errors->has('captcha'))
+                        @foreach($errors->get('captcha') as $error)
+                            {{$error}}
+                        @endforeach
+                    @endif
+
+                </div>
             </div>
             <div class="row cl">
                 <div class="formControls col-xs-8 col-xs-offset-3">
@@ -64,17 +91,17 @@
     </div>
 </div>
 <div class="footer">Copyright 你的公司名称 by H-ui.admin v3.0</div>
-<script type="text/javascript" src="admin/lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="admin/static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="{{asset('admin/lib/jquery/1.9.1/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('admin/static/h-ui/js/H-ui.min.js')}}"></script>
 <!--此乃百度统计代码，请自行删除-->
 <script>
-    var _hmt = _hmt || [];
-    (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
+//    var _hmt = _hmt || [];
+//    (function () {
+//        var hm = document.createElement("script");
+//        hm.src = "https://hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
+//        var s = document.getElementsByTagName("script")[0];
+//        s.parentNode.insertBefore(hm, s);
+//    })();
 </script>
 <!--/此乃百度统计代码，请自行删除
 </body>

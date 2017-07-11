@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class brandSeeder extends Seeder
+class BrandSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,22 +12,16 @@ class brandSeeder extends Seeder
     public function run()
     {
         //
+        for ($i=0;$i<10;$i++) {
+            DB::table('brand')->insert([
+                'brand_name'=>str_random(5),
+                'site_url'=>'http://www.huawei.com',
+                'description'=>'中国',
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
+            ]);
 
-        DB::table('brand')->insert([
-            'brand_name'=>'华为',
-            'site_url'=>'http://www.huawei.com',
-            'description'=>'中国制造',
-            'created_at'=>date('Y-m-d H:i:s',time()),
-            'updated_at'=>date('Y-m-d H:i:s')
-        ]);
+        }
 
-
-        DB::table('brand')->insert([
-            'brand_name'=>'小米',
-            'site_url'=>'http://www.xiaomi.com',
-            'description'=>'中国制造',
-            'created_at'=>date('Y-m-d H:i:s',time()),
-            'updated_at'=>date('Y-m-d H:i:s')
-        ]);
     }
 }

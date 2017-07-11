@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBrandTable extends Migration
+class CreateUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,17 +14,13 @@ class CreateBrandTable extends Migration
     public function up()
     {
         //
-        Schema::create('brand',function (Blueprint $table){
+        Schema::create('user',function ($table){
             $table->mediumIncrements('id');
-            $table->string('brand_name',30);
-            $table->string('logo')->nullable();
-            $table->string('site_url',50);
-            $table->string('description');
-            $table->timestamps();
-            $table->softDeletes();
+            $table->string('username')->unique();
+            $table->string('password')->notNull();
+            $table->timestamps(); //保存用户的添加数据
+            $table->rememberToken();//记住用户的登录信息
         });
-     
-
     }
 
     /**
@@ -35,6 +31,6 @@ class CreateBrandTable extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('brand');
+        Schema::dropIfExists('user');
     }
 }

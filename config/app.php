@@ -231,6 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Captcha'=>Mews\Captcha\CaptchaServiceProvider::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Input'    => Illuminate\Support\Facades\Input::class,
     ],
 
 ];

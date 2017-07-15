@@ -82,7 +82,7 @@ return [
 
          'admin' => [
              'driver' => 'eloquent', //数据的获取
-             'model' => App\Http\Model\UserModel::class,
+             'model' => App\Admin\Admin::class,
          ],
     ],
 

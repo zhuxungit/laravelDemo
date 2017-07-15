@@ -29,8 +29,7 @@
     <div id="loginform" class="loginBox">
 
 
-
-        <form class="form form-horizontal" action="/login" method="post">
+        <form class="form form-horizontal" action="/admin/public/checkLogin" method="post">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
@@ -38,9 +37,9 @@
                     <input id="" name="username" type="text" placeholder="账户" class="input-text size-L"></br>
 
                     {{--@if($errors->has('username'))--}}
-                        {{--@foreach($errors->get('username') as $error)--}}
-                            {{--{{$error}}--}}
-                        {{--@endforeach--}}
+                    {{--@foreach($errors->get('username') as $error)--}}
+                    {{--{{$error}}--}}
+                    {{--@endforeach--}}
                     {{--@endif--}}
 
 
@@ -51,11 +50,11 @@
                 <div class="formControls col-xs-8">
                     <input id="" name="password" type="password" placeholder="密码" class="input-text size-L"></br>
 
-                    @if($errors->has('password'))
-                        @foreach($errors->get('password') as $error)
-                            {{$error}}
-                        @endforeach
-                    @endif
+                    {{--@if($errors->has('password'))--}}
+                    {{--@foreach($errors->get('password') as $error)--}}
+                    {{--{{$error}}--}}
+                    {{--@endforeach--}}
+                    {{--@endif--}}
 
                 </div>
             </div>
@@ -63,14 +62,14 @@
             <div class="row cl">
                 <div class="formControls col-xs-8 col-xs-offset-3">
                     <input name="captcha" class="input-text size-L" type="text" placeholder="验证码"
-                            style="width:150px;">
-                    <img  src="{{captcha_src()}}" onclick="this.src='{{captcha_src()}}'+Math.random()"> 看不清，换一张</br>
+                           style="width:150px;">
+                    <img src="{{captcha_src()}}" onclick="this.src='{{captcha_src()}}'+Math.random()"><a href="javascript:void(0)" id="kanbuq"> 看不清，换一张</a></br>
 
-                    @if($errors->has('captcha'))
-                        @foreach($errors->get('captcha') as $error)
-                            {{$error}}
-                        @endforeach
-                    @endif
+                    {{--@if($errors->has('captcha'))--}}
+                    {{--@foreach($errors->get('captcha') as $error)--}}
+                    {{--{{$error}}--}}
+                    {{--@endforeach--}}
+                    {{--@endif--}}
 
                 </div>
             </div>
@@ -93,16 +92,26 @@
 <div class="footer">Copyright 你的公司名称 by H-ui.admin v3.0</div>
 <script type="text/javascript" src="{{asset('admin/lib/jquery/1.9.1/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/static/h-ui/js/H-ui.min.js')}}"></script>
-<!--此乃百度统计代码，请自行删除-->
+
 <script>
-//    var _hmt = _hmt || [];
-//    (function () {
-//        var hm = document.createElement("script");
-//        hm.src = "https://hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
-//        var s = document.getElementsByTagName("script")[0];
-//        s.parentNode.insertBefore(hm, s);
-//    })();
+    $(function () {
+        var src = $('img').attr('src');
+        $('#kanbuq').click(function () {
+            $('img').attr('src', src + '&_' + Math.random());
+        });
+
+        @if(count($errors)>0)
+        //当$errors变量存在错误信息时可以alert出来
+        var errs = '';
+        @foreach($errors->all() as $error)
+        //将错误信息连在一起
+        errs += "{{$error}}\n";
+        @endforeach
+            alert(errs);
+        @endif
+    });
+
 </script>
-<!--/此乃百度统计代码，请自行删除
+
 </body>
 </html>

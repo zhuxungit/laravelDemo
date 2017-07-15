@@ -162,14 +162,15 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        //引入验证码
-        Mews\Captcha\CaptchaServiceProvider::class,
+
 
         /*
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        //引入验证码
+        Mews\Captcha\CaptchaServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -4,49 +4,69 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "81ba52c7aaa6f24dcba2423dd9cbff0f",
+    "content-hash": "85ffedede3ea40945c98b0784ee8f7ac",
     "packages": [
         {
-            "name": "caouecs/laravel-lang",
+            "name": "barryvdh/laravel-debugbar",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/caouecs/Laravel-lang.git",
-                "reference": "510f79dfa4a55d31c5ba45fb7343c244ebffdbba"
+                "url": "https://github.com/barryvdh/laravel-debugbar.git",
+                "reference": "3723bd12326f25c21e059706de85ffbc220d93a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/caouecs/Laravel-lang/510f79dfa4a55d31c5ba45fb7343c244ebffdbba.zip",
-                "reference": "510f79dfa4a55d31c5ba45fb7343c244ebffdbba",
+                "url": "https://files.phpcomposer.com/files/barryvdh/laravel-debugbar/3723bd12326f25c21e059706de85ffbc220d93a7.zip",
+                "reference": "3723bd12326f25c21e059706de85ffbc220d93a7",
                 "shasum": ""
             },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^1.10"
-            },
-            "suggest": {
-                "ablunier/laravel-lang-installer": "Command for easily add languages to a Laravel project",
-                "arcanedev/laravel-lang": "Translations manager and checker for Laravel 5",
-                "overtrue/laravel-lang": "Command to add languages in your project"
+            "require": {
+                "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*",
+                "maximebf/debugbar": "~1.13.0",
+                "php": ">=5.5.9",
+                "symfony/finder": "~2.7|~3.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Barryvdh\\Debugbar\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Debugbar": "Barryvdh\\Debugbar\\Facade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\Debugbar\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
-                    "name": "caouecs",
-                    "email": "caouecs@caouecs.net"
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
                 }
             ],
-            "description": "Languages for Laravel",
+            "description": "PHP Debugbar integration for Laravel",
             "keywords": [
-                "lang",
-                "languages",
+                "debug",
+                "debugbar",
                 "laravel",
-                "lpm"
+                "profiler",
+                "webprofiler"
             ],
-            "time": "2017-07-05 07:21:25"
+            "time": "2017-07-11 12:52:57"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -685,6 +705,67 @@
                 "storage"
             ],
             "time": "2017-06-08T13:44:14+00:00"
+        },
+        {
+            "name": "maximebf/debugbar",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maximebf/php-debugbar.git",
+                "reference": "abb2a4cfda971f81d1da24e549444a2b04a562fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/maximebf/php-debugbar/abb2a4cfda971f81d1da24e549444a2b04a562fe.zip",
+                "reference": "abb2a4cfda971f81d1da24e549444a2b04a562fe",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "psr/log": "^1.0",
+                "symfony/var-dumper": "^2.6|^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0|^5.0"
+            },
+            "suggest": {
+                "kriswallsmith/assetic": "The best way to manage assets",
+                "monolog/monolog": "Log using Monolog",
+                "predis/predis": "Redis storage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.13-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DebugBar\\": "src/DebugBar/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxime Bouroumeau-Fuseau",
+                    "email": "maxime.bouroumeau@gmail.com",
+                    "homepage": "http://maximebf.com"
+                },
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "Debug bar in the browser for php application",
+            "homepage": "https://github.com/maximebf/php-debugbar",
+            "keywords": [
+                "debug",
+                "debugbar"
+            ],
+            "time": "2017-07-14 08:36:10"
         },
         {
             "name": "mews/captcha",
@@ -2171,6 +2252,48 @@
     ],
     "packages-dev": [
         {
+            "name": "caouecs/laravel-lang",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/caouecs/Laravel-lang.git",
+                "reference": "510f79dfa4a55d31c5ba45fb7343c244ebffdbba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/caouecs/Laravel-lang/510f79dfa4a55d31c5ba45fb7343c244ebffdbba.zip",
+                "reference": "510f79dfa4a55d31c5ba45fb7343c244ebffdbba",
+                "shasum": ""
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.10"
+            },
+            "suggest": {
+                "ablunier/laravel-lang-installer": "Command for easily add languages to a Laravel project",
+                "arcanedev/laravel-lang": "Translations manager and checker for Laravel 5",
+                "overtrue/laravel-lang": "Command to add languages in your project"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "caouecs",
+                    "email": "caouecs@caouecs.net"
+                }
+            ],
+            "description": "Languages for Laravel",
+            "keywords": [
+                "lang",
+                "languages",
+                "laravel",
+                "lpm"
+            ],
+            "time": "2017-07-05 07:21:25"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "dev-master",
             "source": {
@@ -3653,7 +3776,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "caouecs/laravel-lang": 20
+        "barryvdh/laravel-debugbar": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -22,6 +22,10 @@ Route::post('/admin/public/checkLogin','Admin\PublicController@checkLogin');
 //添加后台首页的路由
 Route::get('/admin/index/index', 'Admin\IndexController@index');
 Route::get('/admin/index/welcome', 'Admin\IndexController@welcome');
+
+//管理员列表
+Route::get('/admin/admin/index', 'Admin\AdminController@index');
+Route::get('/admin/admin/loadAdminData', 'Admin\AdminController@loadAdminData');
 //
 //Route::group(['middleware' => 'auth:admin'], function () {
 //    //添加后台首页的路由

@@ -27,6 +27,12 @@ Route::get('/admin/index/welcome', 'Admin\IndexController@welcome');
 Route::any('/admin/admin/index/{flag?}','Admin\AdminController@index');
 //Route::get('/admin/admin/loadAdminData', 'Admin\AdminController@loadAdminData');
 
+
+//权限管理部分
+Route::get('/admin/auth/index','Admin\AuthController@index');//列表
+Route::any('/admin/auth/add','Admin\AuthController@add');//添加
+
+
 //Route::group(['middleware' => 'auth:admin'], function () {
 //    //添加后台首页的路由
 //    Route::any('adminIndex', 'AdminController@index');

@@ -32,6 +32,11 @@ Route::any('/admin/admin/index/{flag?}','Admin\AdminController@index');
 Route::get('/admin/auth/index','Admin\AuthController@index');//列表
 Route::any('/admin/auth/add','Admin\AuthController@add');//添加
 
+//角色列表
+Route::get('/admin/role/index','Admin\RoleController@index');//列表
+Route::any('/admin/role/assignAuth','Admin\RoleController@assignAuth');//分配权限
+
+
 
 //Route::group(['middleware' => 'auth:admin'], function () {
 //    //添加后台首页的路由

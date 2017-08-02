@@ -15,37 +15,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 //后台登录
-Route::get('/admin/public/login','Admin\PublicController@login');
+Route::get('/admin/public/login', 'Admin\PublicController@login');
+//用户退出
+Route::get('/admin/public/logout', 'Admin\PublicController@logout');
 //登录处理路由
-Route::post('/admin/public/checkLogin','Admin\PublicController@checkLogin');
+Route::post('/admin/public/checkLogin', 'Admin\PublicController@checkLogin');
 
-//添加后台首页的路由
-Route::get('/admin/index/index', 'Admin\IndexController@index');
-Route::get('/admin/index/welcome', 'Admin\IndexController@welcome');
+//使用路由群组
+Route::group(['middleware' => ['auth:admin', 'checkrbac']], function () {
 
-//管理员列表
-Route::any('/admin/admin/index/{flag?}','Admin\AdminController@index');
-//Route::get('/admin/admin/loadAdminData', 'Admin\AdminController@loadAdminData');
+    //添加后台首页的路由
+    Route::get('/admin/index/index', 'Admin\IndexController@index');
+    Route::get('/admin/index/welcome', 'Admin\IndexController@welcome');
 
+    //管理员列表
+    Route::any('/admin/admin/index/{flag?}', 'Admin\AdminController@index');
 
-//权限管理部分
-Route::get('/admin/auth/index','Admin\AuthController@index');//列表
-Route::any('/admin/auth/add','Admin\AuthController@add');//添加
+    //权限管理部分
+    Route::get('/admin/auth/index', 'Admin\AuthController@index');//列表
+    Route::any('/admin/auth/add', 'Admin\AuthController@add');//添加
 
-//角色列表
-Route::get('/admin/role/index','Admin\RoleController@index');//列表
-Route::any('/admin/role/assignAuth','Admin\RoleController@assignAuth');//分配权限
-
-
-
-//Route::group(['middleware' => 'auth:admin'], function () {
-//    //添加后台首页的路由
-//    Route::any('adminIndex', 'AdminController@index');
-//    Route::get('welcome', 'AdminController@welcome');
-//    //退出登录
-//    Route::get('logout', 'LoginController@logout');
-//    //品牌页面
-//    Route::get('brand', 'BrandController@index');
-//    Route::post('brand/ajaxLst','BrandController@ajaxLst');
-//    Route::any('brand/brandAdd','BrandController@brandAdd');
-//});
+    //角色列表
+    Route::get('/admin/role/index', 'Admin\RoleController@index');//列表
+    Route::any('/admin/role/assignAuth', 'Admin\RoleController@assignAuth');//分配权限
+});

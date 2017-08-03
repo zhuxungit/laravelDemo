@@ -13,13 +13,14 @@ class CreateAuthTable extends Migration
      */
     public function up()
     {
+//        Schema::dropIfExists('auth');
         Schema::create('auth',function($table){
             $table -> increments('id');
             $table -> string('auth_name',20) -> notNull();
             $table -> string('controller',40);
             $table -> string('action',30);
             $table -> tinyInteger('pid');
-            $table -> enum('is_nav',[1,2]) -> notNull() -> default('1');
+            $table -> enum('is_nav',[1,2]) ->notNull() ->default('1');
         });
     }
 

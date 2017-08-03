@@ -13,6 +13,7 @@ class CreateRoleTable extends Migration
      */
     public function up()
     {
+//        Schema::dropIfExists('role');
         Schema::create('role',function($table){
             $table -> increments('id');
             $table -> string('role_name',20) -> notNull();

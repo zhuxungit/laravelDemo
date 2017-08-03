@@ -38,4 +38,8 @@ Route::group(['middleware' => ['auth:admin', 'checkrbac']], function () {
     //角色列表
     Route::get('/admin/role/index', 'Admin\RoleController@index');//列表
     Route::any('/admin/role/assignAuth', 'Admin\RoleController@assignAuth');//分配权限
+
+    //会员管理部分
+    Route::get('/admin/member/index','Admin\MemberController@index');//列表
+    Route::any('/admin/member/add','Admin\MemberController@add');//会员添加
 });

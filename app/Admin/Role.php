@@ -29,5 +29,4 @@ class Role extends Model
         //更新
         return DB::table('role') -> where('id',$id) ->update($data);
     }
-
 }

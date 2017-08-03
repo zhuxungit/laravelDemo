@@ -14,6 +14,6 @@ class Admin extends Model implements \Illuminate\Contracts\Auth\Authenticatable
 
     //一对一关联role模型
     public function related_role(){
-        return $this -> hasOne('App\Admin\Role', 'id', 'role_id');
+        return $this -> hasOne('App\Admin\Role', 'id', 'id');
     }
 }

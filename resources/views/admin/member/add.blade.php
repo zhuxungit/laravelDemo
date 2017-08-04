@@ -41,17 +41,45 @@
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
 			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
 				<div class="radio-box">
-					<input name="sex" type="radio" id="sex-1" checked>
+					<input name="gender" type="radio" value="1" id="sex-1" checked>
 					<label for="sex-1">男</label>
 				</div>
 				<div class="radio-box">
-					<input type="radio" id="sex-2" name="sex">
+					<input type="radio" id="sex-2" value="2" name="gender">
 					<label for="sex-2">女</label>
 				</div>
 				<div class="radio-box">
-					<input type="radio" id="sex-3" name="sex">
+					<input type="radio" id="sex-3" value="3" name="gender">
 					<label for="sex-3">保密</label>
 				</div>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>状态：</label>
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+				<div class="radio-box">
+					<input name="status" type="radio" value="1" id="sex-1" >
+					<label for="sex-1">禁用</label>
+				</div>
+				<div class="radio-box">
+					<input type="radio" id="sex-2" value="2" name="status" checked>
+					<label for="sex-2">启用</label>
+				</div>
+
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>类型：</label>
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+				<div class="radio-box">
+					<input name="type" type="radio" value="1" id="sex-1" checked>
+					<label for="sex-1">学生</label>
+				</div>
+				<div class="radio-box">
+					<input type="radio" id="sex-2" value="2" name="type">
+					<label for="sex-2">老师</label>
+				</div>
+
 			</div>
 		</div>
 		<div class="row cl">
@@ -74,17 +102,17 @@
 				<input type="file" multiple name="file-2" class="input-file">
 				</span> </div>
 		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3">所在城市：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" size="1" name="city">
-					<option value="" selected>请选择城市</option>
-					<option value="1">北京</option>
-					<option value="2">上海</option>
-					<option value="3">广州</option>
-				</select>
-				</span> </div>
-		</div>
+		{{--<div class="row cl">--}}
+			{{--<label class="form-label col-xs-4 col-sm-3">所在城市：</label>--}}
+			{{--<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">--}}
+				{{--<select class="select" size="1" name="city">--}}
+					{{--<option value="" selected>请选择城市</option>--}}
+					{{--<option value="1">北京</option>--}}
+					{{--<option value="2">上海</option>--}}
+					{{--<option value="3">广州</option>--}}
+				{{--</select>--}}
+				{{--</span> </div>--}}
+		{{--</div>--}}
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">备注：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -97,6 +125,7 @@
 				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
 			</div>
 		</div>
+		{{csrf_field()}}
 	</form>
 </article>
 
@@ -126,6 +155,9 @@ $(function(){
 				minlength:2,
 				maxlength:16
 			},
+			gender:{
+			    required:true,
+			},
 			sex:{
 				required:true,
 			},
@@ -146,10 +178,22 @@ $(function(){
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
-			//$(form).ajaxSubmit();
-			var index = parent.layer.getFrameIndex(window.name);
-			//parent.$('.btn-refresh').click();
-			parent.layer.close(index);
+			$(form).ajaxSubmit({
+			    type:'post',
+				url:"/admin/member/add",
+				success:function (data) {
+					if (data == '1'){
+					    parent.layer.msg('添加成功',{
+					        icon:1,
+							time:100
+						});
+                        var index = parent.layer.getFrameIndex(window.name);
+                        parent.$('.btn-refresh').click();
+                        parent.layer.close(index);
+					}
+                },
+			});
+
 		}
 	});
 });

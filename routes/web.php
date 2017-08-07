@@ -42,4 +42,7 @@ Route::group(['middleware' => ['auth:admin', 'checkrbac']], function () {
     //会员管理部分
     Route::get('/admin/member/index','Admin\MemberController@index');//列表
     Route::any('/admin/member/add','Admin\MemberController@add');//会员添加
+
+    //上传
+    Route::post('/admin/uploader/webuploader','Admin\UploaderController@webuploader');
 });

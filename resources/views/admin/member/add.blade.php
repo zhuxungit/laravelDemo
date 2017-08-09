@@ -152,6 +152,14 @@
 
 <script type="text/javascript">
     $(function () {
+        var $ = jQuery;
+        $list = $('#fileList');
+        //优化retina,在retina下值为2
+        ratio = window.devicePixelRatio || 1;
+        //缩列图大小
+        thumbnailWidth = 100*ratio;
+        thumbnailHeight = 100*ratio;
+
         // 初始化Web Uploader
         var uploader = WebUploader.create({
             //添加token参数

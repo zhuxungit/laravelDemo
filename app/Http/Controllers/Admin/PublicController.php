@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class PublicController extends Controller
 {
@@ -26,5 +27,14 @@ class PublicController extends Controller
             'password'=>'required|min:6|max:32',
             'captcha'=>'required|size:5|captcha'
         ]);
+        $data = $request->only('username','password');
+        $result = Auth::guard('admin')->attempt($data,$request->get('online'));
+        if ($result) {
+            return redirect('/admin/index/index');
+        }else{
+            return redirect('/admin/public/login')->withErrors([
+                'loginError'=>'用户名或密码错误',
+            ]);
+        }
     }
 }

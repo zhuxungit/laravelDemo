@@ -66,7 +66,7 @@
 <div class="footer">Copyright 你的公司名称 by H-ui.admin v3.1</div>
 <script type="text/javascript" src="/admin/lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="/admin/static/h-ui/js/H-ui.min.js"></script>
-<!--此乃百度统计代码，请自行删除-->
+
 <script>
   //点击切换验证码
   $(function () {
@@ -84,6 +84,6 @@
         @endif
 
 </script>
-<!--/此乃百度统计代码，请自行删除
+
 </body>
 </html>

@@ -14,3 +14,6 @@
 //后台的登录页面
 Route::get('/admin/public/login','Admin\PublicController@login');
 Route::post('/admin/public/checkLogin','Admin\PublicController@checkLogin');
+
+//后台首页路由
+Route::get('/admin/index/index','Admin\Index\IndexController@index');
